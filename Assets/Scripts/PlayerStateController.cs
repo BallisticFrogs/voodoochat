@@ -33,7 +33,7 @@ public class PlayerStateController : MonoBehaviour
 
     void Awake()
     {
-       playerController = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>();
 
         GameObject twitchChatBotObj = GameObject.FindGameObjectWithTag(Tags.TwitchChatBot);
         if (twitchChatBotObj != null)

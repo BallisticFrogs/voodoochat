@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
+        if (playerState == PlayerState.TRANCE)
+        {
+            moveHorizontal *= -1;
+            moveVertical *= -1;
+        }
+
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed * Time.deltaTime;
         bool running = false;
