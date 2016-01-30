@@ -12,7 +12,7 @@ public class GlobalUI : MonoBehaviour
 
     public static void LoadLvl()
     {
-        SceneManager.LoadScene("room1", LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
 }
