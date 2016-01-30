@@ -3,13 +3,19 @@ using System.Collections;
 
 public class TrapTrigger : MonoBehaviour {
 
-    void OnTriggerEnter(Collider collider)
+    void OnCollisionEnter(Collision collision)
     {
+        Collider collider = collision.collider;
+
         if (collider.CompareTag("Player"))
         {
             GameObject player = collider.gameObject;
             PlayerHealth  playerHealth = player.GetComponent<PlayerHealth>();
-            playerHealth.health -=1;
+            if (!playerHealth.invicibility)
+            {
+                playerHealth.dealDamage(1);
+            }
+
         }
     }
 }
