@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29bc9c22b2aa77442861dc5b163d80d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateInterval: 30
+  updateInterval: 15
   countdownText: {fileID: 882855231}
   iceVotesText: {fileID: 1259609108}
   ghostVotesText: {fileID: 741714063}
