@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: traversable
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: f6ce13eaccf7b5e488e3ed0552cf6895, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: Transparent
   m_SavedProperties:
@@ -20,7 +20,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: e54f30f4c8b163b4c8d1b738809e111b, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 50, y: 5}
           m_Offset: {x: 0, y: 0}
       data:
@@ -102,7 +102,7 @@ Material:
       data:
         first:
           name: _Shininess
-        second: 0.7
+        second: 0.1
       data:
         first:
           name: _Parallax
@@ -151,7 +151,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 0.266}
+        second: {r: 1, g: 1, b: 1, a: 0.47058824}
       data:
         first:
           name: _SpecColor

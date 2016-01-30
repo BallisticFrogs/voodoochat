@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4e1674552410097459e071a8c6072c3f
-timeCreated: 1454170522
+guid: d8ef8a2b8107d0f4ebf91009d6f317f4
+timeCreated: 1454194713
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,11 +9,11 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Terrain
+    4300000: Herb_B
   materials:
-    importMaterials: 1
-    materialName: 1
-    materialSearch: 2
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -50,8 +50,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 90
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0

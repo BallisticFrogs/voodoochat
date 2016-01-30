@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4e1674552410097459e071a8c6072c3f
-timeCreated: 1454170522
+guid: 096ff17c1c5fdb74cb9cf4f60d3885b1
+timeCreated: 1454194111
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Terrain
+    4300000: TreeFir_B
   materials:
     importMaterials: 1
     materialName: 1
@@ -50,8 +50,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 90
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
