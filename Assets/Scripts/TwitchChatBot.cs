@@ -4,24 +4,22 @@ using System.Collections;
 using System.Threading;
 using UnityEngine.UI;
 
-public class IrcBot : MonoBehaviour
+public class TwitchChatBot : MonoBehaviour
 {
+
+    public delegate void Messagehandler(string username, string mesg);
 
     private const string pref_username = "username";
     private const string pref_password = "password";
-
-    // voodoochat
-    // oauth:g0jq8rzhs4a6epo4tygnpgv5w8yit2
 
     public InputField usernameField;
     public InputField passwordField;
     public Text feedbackText;
 
-    private IrcClient client;
-    //    private ThreadController threadController;
-    private Thread ircClientThread;
+    public event Messagehandler OnMessage;
 
-    private readonly object ircClientlockObj = new object();
+    private IrcClient client;
+    private Thread ircClientThread;
 
     void Awake()
     {
@@ -38,7 +36,6 @@ public class IrcBot : MonoBehaviour
         if (ircClientThread != null)
         {
             Debug.LogWarning("Disconnecting IRC client");
-            //ircClientThread.Abort();
             client.Disconnect();
             ircClientThread = null;
             Debug.LogWarning("IRC client disconnected");
@@ -81,19 +78,15 @@ public class IrcBot : MonoBehaviour
         {
             string message = client.ReadChatMessage(); // blocking
 
-            lock (ircClientlockObj)
-            {
-                Debug.LogWarning(message);
-            }
-        }
-    }
+            string[] parts = message.Split(':', '!');
+            //            Debug.LogWarning(message);
+            //            for (int i = 0; i < parts.Length; i++)
+            //            {
+            //                Debug.LogWarning(i + " => " + parts[i]);
+            //            }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //            lock (ircClientlockObj)
-        //            {
-        //            }
+            if (OnMessage != null && parts.Length > 2) OnMessage(parts[1], parts[parts.Length - 1]);
+        }
     }
 
 }
