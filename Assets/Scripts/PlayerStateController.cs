@@ -121,7 +121,24 @@ public class PlayerStateController : MonoBehaviour
         {
             if (twitchChatBot != null)
             {
-                // TODO compare votes
+                // find majority and change player state accordingly
+                // if tie or no votes => normal state
+                if (tranceVotes > ghostVotes && tranceVotes > exorcismVotes)
+                {
+                    playerController.SetPlayerState(PlayerState.TRANCE);
+                }
+                else if (ghostVotes > tranceVotes && ghostVotes > exorcismVotes)
+                {
+                    playerController.SetPlayerState(PlayerState.GHOST);
+                }
+                else if (exorcismVotes > ghostVotes && exorcismVotes > tranceVotes)
+                {
+                    playerController.SetPlayerState(PlayerState.EXORCISM);
+                }
+                else
+                {
+                    playerController.SetPlayerState(PlayerState.NORMAL);
+                }
             }
             else
             {
