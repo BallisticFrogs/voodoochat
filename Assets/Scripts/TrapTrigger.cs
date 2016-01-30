@@ -7,7 +7,9 @@ public class TrapTrigger : MonoBehaviour {
     {
         if (collider.CompareTag("Player"))
         {
-            collider.SendMessage("Kill");
+            GameObject player = collider.gameObject;
+            PlayerHealth  playerHealth = player.GetComponent<PlayerHealth>();
+            playerHealth.health -=1;
         }
     }
 }
