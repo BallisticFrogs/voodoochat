@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee0cd49aa2ee964191a3dd3762496a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowModeSpeed: 0.3
 --- !u!4 &150904037
 Transform:
   m_ObjectHideFlags: 0
@@ -703,6 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54eb258144b5e4bbed677866c848ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   target: {fileID: 113300275}
 --- !u!114 &321305694
 MonoBehaviour:
