@@ -161,9 +161,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateInterval: 15
   countdownText: {fileID: 882855231}
-  iceVotesText: {fileID: 1259609108}
+  tranceVotesText: {fileID: 1259609108}
   ghostVotesText: {fileID: 741714063}
-  metalVotesText: {fileID: 1026946780}
+  exorcismVotesText: {fileID: 1026946780}
 --- !u!1 &255382867
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,11 +267,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Vote for player state:
 
-    - ice
+    - trance
 
     - ghost
 
-    - metal'
+    - exorcism'
 --- !u!222 &328690715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -718,7 +718,7 @@ GameObject:
   - 222: {fileID: 1259609109}
   - 114: {fileID: 1259609108}
   m_Layer: 5
-  m_Name: Slow Votes
+  m_Name: Trance Votes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

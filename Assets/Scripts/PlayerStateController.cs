@@ -8,22 +8,22 @@ using Random = UnityEngine.Random;
 public class PlayerStateController : MonoBehaviour
 {
 
-    private const string keyword_ice = "ice";
+    private const string keyword_trance = "trance";
     private const string keyword_ghost = "ghost";
-    private const string keyword_metal = "metal";
+    private const string keyword_exorcism = "exorcism";
 
     public float updateInterval = 30;
     public Text countdownText;
-    public Text iceVotesText;
+    public Text tranceVotesText;
     public Text ghostVotesText;
-    public Text metalVotesText;
+    public Text exorcismVotesText;
 
     private TwitchChatBot twitchChatBot;
     private float currentTime;
     private bool votesDirty;
-    private int iceVotes;
+    private int tranceVotes;
     private int ghostVotes;
-    private int metalVotes;
+    private int exorcismVotes;
 
     private PlayerController playerController;
 
@@ -74,9 +74,9 @@ public class PlayerStateController : MonoBehaviour
         if (votesDirty)
         {
             votesDirty = false;
-            iceVotesText.text = iceVotes.ToString();
+            tranceVotesText.text = tranceVotes.ToString();
             ghostVotesText.text = ghostVotes.ToString();
-            metalVotesText.text = metalVotes.ToString();
+            exorcismVotesText.text = exorcismVotes.ToString();
         }
 
         countdownText.text = "Change in " + Mathf.CeilToInt(updateInterval - currentTime);
@@ -97,9 +97,9 @@ public class PlayerStateController : MonoBehaviour
         {
             string normalizedMsg = msg.Trim().ToLower();
             Debug.LogWarning(normalizedMsg);
-            if (normalizedMsg.Equals(keyword_ice))
+            if (normalizedMsg.Equals(keyword_trance))
             {
-                iceVotes++;
+                tranceVotes++;
                 votesDirty = true;
             }
             else if (normalizedMsg.Equals(keyword_ghost))
@@ -107,9 +107,9 @@ public class PlayerStateController : MonoBehaviour
                 ghostVotes++;
                 votesDirty = true;
             }
-            else if (normalizedMsg.Equals(keyword_metal))
+            else if (normalizedMsg.Equals(keyword_exorcism))
             {
-                metalVotes++;
+                exorcismVotes++;
                 votesDirty = true;
             }
         }
@@ -137,9 +137,9 @@ public class PlayerStateController : MonoBehaviour
 
     private void ResetVotes()
     {
-        iceVotes = 0;
+        tranceVotes = 0;
         ghostVotes = 0;
-        metalVotes = 0;
+        exorcismVotes = 0;
         votesDirty = true;
     }
 
