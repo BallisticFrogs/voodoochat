@@ -28,9 +28,10 @@ public class GhostLight : MonoBehaviour
             if (dstToLight < radius)
             {
                 // check the light can reach the ghost
-                bool hit = Physics.Linecast(transform.position, other.gameObject.transform.position);
+                RaycastHit raycastHit;
+                bool hit = Physics.Linecast(transform.position, other.gameObject.transform.position, out raycastHit);
 
-                if (hit)
+                if (hit && raycastHit.collider.gameObject == other.gameObject)
                 {
                     // compute and apply dmg
                     float dmg = baseDamage * (1 - dstToLight / radius);

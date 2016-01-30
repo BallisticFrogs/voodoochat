@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
 
     public int health = 3;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
         if (health <= 0)
         {
@@ -22,9 +19,11 @@ public class PlayerHealth : MonoBehaviour {
 
     void Die()
     {
-        Application.LoadLevel(1);
-        //do dying thinks
-    }
+        // TODO do dying thinks
 
+        // reset lvl
+        var gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
+        gameController.ResetLevel();
+    }
 
 }

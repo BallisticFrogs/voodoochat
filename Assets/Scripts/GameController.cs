@@ -35,4 +35,9 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
