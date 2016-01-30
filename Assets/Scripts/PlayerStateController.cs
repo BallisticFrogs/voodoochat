@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System.Xml.Schema;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -17,6 +18,10 @@ public class PlayerStateController : MonoBehaviour
     public Text tranceVotesText;
     public Text ghostVotesText;
     public Text exorcismVotesText;
+
+    public Slider tranceSlider;
+    public Slider ghostSlider;
+    public Slider exorcismSlider;
 
     private TwitchChatBot twitchChatBot;
     private float currentTime;
@@ -73,13 +78,17 @@ public class PlayerStateController : MonoBehaviour
 
         if (votesDirty)
         {
+            float totalVotes = tranceVotes + ghostVotes + exorcismVotes;
             votesDirty = false;
             tranceVotesText.text = tranceVotes.ToString();
+            tranceSlider.value = tranceVotes/totalVotes;
             ghostVotesText.text = ghostVotes.ToString();
+            ghostSlider.value = ghostVotes/totalVotes;
             exorcismVotesText.text = exorcismVotes.ToString();
+            exorcismSlider.value = exorcismVotes/totalVotes;
         }
 
-        countdownText.text = "Change in " + Mathf.CeilToInt(updateInterval - currentTime);
+        countdownText.text = ""+Mathf.CeilToInt(updateInterval - currentTime);
 
         // if not connected to Twitch, allow to switch state using keyboard for test
         if (twitchChatBot == null)
@@ -155,8 +164,11 @@ public class PlayerStateController : MonoBehaviour
     private void ResetVotes()
     {
         tranceVotes = 0;
+        tranceSlider.value = 0;
         ghostVotes = 0;
+        ghostSlider.value = 0;
         exorcismVotes = 0;
+        exorcismSlider.value = 0;
         votesDirty = true;
     }
 
