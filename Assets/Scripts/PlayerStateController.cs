@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Linq;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerStateController : MonoBehaviour
 {
@@ -22,16 +25,24 @@ public class PlayerStateController : MonoBehaviour
     private int ghostVotes;
     private int metalVotes;
 
+    private PlayerController playerController;
 
     private readonly object ircClientlockObj = new object();
 
+    private PlayerState[] playerStateValues;
+
     void Awake()
     {
+        playerController = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>();
+
         GameObject twitchChatBotObj = GameObject.FindGameObjectWithTag(Tags.TwitchChatBot);
         if (twitchChatBotObj != null)
         {
             twitchChatBot = twitchChatBotObj.GetComponent<TwitchChatBot>();
         }
+
+        playerStateValues = Enum.GetValues(typeof(PlayerState)).OfType<PlayerState>().ToArray();
+
         ResetVotes();
     }
 
@@ -49,11 +60,6 @@ public class PlayerStateController : MonoBehaviour
         {
             twitchChatBot.OnMessage -= HandleNewTwitchMessage;
         }
-    }
-
-    void Start()
-    {
-
     }
 
     void Update()
@@ -74,6 +80,15 @@ public class PlayerStateController : MonoBehaviour
         }
 
         countdownText.text = "Change in " + Mathf.CeilToInt(updateInterval - currentTime);
+
+        // if not connected to Twitch, allow to switch state using keyboard for test
+        if (twitchChatBot == null)
+        {
+            if (Input.GetKeyDown(KeyCode.U)) playerController.SetPlayerState(PlayerState.NORMAL);
+            if (Input.GetKeyDown(KeyCode.I)) playerController.SetPlayerState(PlayerState.ICE);
+            if (Input.GetKeyDown(KeyCode.O)) playerController.SetPlayerState(PlayerState.GHOST);
+            if (Input.GetKeyDown(KeyCode.P)) playerController.SetPlayerState(PlayerState.METAL);
+        }
     }
 
     private void HandleNewTwitchMessage(string username, string msg)
@@ -110,7 +125,10 @@ public class PlayerStateController : MonoBehaviour
             }
             else
             {
-                // TODO random for test
+                // no connection to Twitch => random for test
+                int stateIndex = Random.Range(0, playerStateValues.Length - 1);
+                PlayerState newState = playerStateValues[stateIndex];
+                playerController.SetPlayerState(newState);
             }
         }
 
