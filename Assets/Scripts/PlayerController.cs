@@ -42,7 +42,17 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        Vector3 velocity = rb.velocity;
         rb.velocity = movement * speed * Time.deltaTime;
+
+        // Check if fly
+        if (!Physics.Raycast(transform.position + Vector3.up * 0.05f, Vector3.down, 0.1f))
+        {
+            if(velocity.y < 0f)
+                rb.velocity += new Vector3(0f, velocity.y, 0f);
+        }
+
+
         bool running = false;
         if (movement != Vector3.zero)
         {

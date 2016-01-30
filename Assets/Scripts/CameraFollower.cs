@@ -4,22 +4,21 @@ using System.Collections;
 public class CameraFollower : MonoBehaviour {
 
     public Transform player = null;
-    public float cameraHeight = 30.0f;
-    public float zOffset = -1.0f;
 
-    private Transform cam = null;
+    protected Vector3 offset;
 
-
-    public void Start()
+    public void Awake()
     {
-        cam = transform;
+        offset = transform.position - player.position;
     }
-    public void Update()
-    { 
-        Vector3 pos = player.position;
-        pos.y = cameraHeight;
-        pos.z += zOffset;
-        cam.position = pos;
+
+    public void FixedUpdate()
+    {
+        Vector3 position = Vector3.zero;
+        position.x = Mathf.Lerp(transform.position.x, player.position.x + offset.x, Time.deltaTime * 10f);
+        position.y = Mathf.Lerp(transform.position.y, player.position.y + offset.y, Time.deltaTime * 0.5f);
+        position.z = Mathf.Lerp(transform.position.z, player.position.z + offset.z, Time.deltaTime * 10f);
+        transform.position = position;
     }
 }
 
