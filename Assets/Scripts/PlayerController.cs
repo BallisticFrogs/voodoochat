@@ -17,12 +17,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private PlayerState playerState;
-
+    private GhostLife ghostLife;
     private GameController gameController;
 
     void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
+        ghostLife = GetComponent<GhostLife>();
     }
 
     void Start()
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.layer = Layers.player_normal;
             gameController.ShowAllTraversableObjects(false);
+            ghostLife.enabled = false;
         }
 
         // add effects of new state
@@ -73,6 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.layer = Layers.player_ghost;
             gameController.ShowAllTraversableObjects(true);
+            ghostLife.enabled = true;
             vfxToGhost.PlayVfx();
         }
         if (newState == PlayerState.EXORCISM)
