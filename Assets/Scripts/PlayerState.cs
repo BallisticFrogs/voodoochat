@@ -6,6 +6,6 @@ using System.Text;
 public enum PlayerState
 {
 
-    NORMAL, ICE, GHOST, METAL
+    NORMAL, TRANCE, GHOST, EXORCISM
 
 }

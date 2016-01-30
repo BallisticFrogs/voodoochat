@@ -15,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - obstacles
+  - obstacles-noghost
+  - player-normal
+  - player-ghost
   - 
   - 
   - 

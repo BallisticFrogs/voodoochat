@@ -18,6 +18,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private PlayerState playerState;
 
+    private GameController gameController;
+
+    void Awake()
+    {
+        gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,28 +43,39 @@ public class PlayerController : MonoBehaviour
             running = true;
         }
 
-        if (puppetAnimator != null) puppetAnimator.SetBool(hashRunning, running);
+        puppetAnimator.SetBool(hashRunning, running);
     }
 
     public void SetPlayerState(PlayerState newState)
     {
         if (newState == playerState) return;
 
+        PlayerState oldState = playerState;
         playerState = newState;
 
+        // remove effects of previous state
+        if (oldState == PlayerState.GHOST)
+        {
+            gameObject.layer = Layers.player_normal;
+            gameController.ShowAllTraversableObjects(false);
+        }
+
+        // add effects of new state
         if (newState == PlayerState.NORMAL)
         {
             vfxToNormal.PlayVfx();
         }
-        if (newState == PlayerState.ICE)
+        if (newState == PlayerState.TRANCE)
         {
             vfxToIce.PlayVfx();
         }
         if (newState == PlayerState.GHOST)
         {
+            gameObject.layer = Layers.player_ghost;
+            gameController.ShowAllTraversableObjects(true);
             vfxToGhost.PlayVfx();
         }
-        if (newState == PlayerState.METAL)
+        if (newState == PlayerState.EXORCISM)
         {
             vfxToMetal.PlayVfx();
         }

@@ -33,7 +33,7 @@ public class PlayerStateController : MonoBehaviour
 
     void Awake()
     {
-        playerController = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>();
+       playerController = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>();
 
         GameObject twitchChatBotObj = GameObject.FindGameObjectWithTag(Tags.TwitchChatBot);
         if (twitchChatBotObj != null)
@@ -85,9 +85,9 @@ public class PlayerStateController : MonoBehaviour
         if (twitchChatBot == null)
         {
             if (Input.GetKeyDown(KeyCode.U)) playerController.SetPlayerState(PlayerState.NORMAL);
-            if (Input.GetKeyDown(KeyCode.I)) playerController.SetPlayerState(PlayerState.ICE);
+            if (Input.GetKeyDown(KeyCode.I)) playerController.SetPlayerState(PlayerState.TRANCE);
             if (Input.GetKeyDown(KeyCode.O)) playerController.SetPlayerState(PlayerState.GHOST);
-            if (Input.GetKeyDown(KeyCode.P)) playerController.SetPlayerState(PlayerState.METAL);
+            if (Input.GetKeyDown(KeyCode.P)) playerController.SetPlayerState(PlayerState.EXORCISM);
         }
     }
 
