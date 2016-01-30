@@ -7,18 +7,23 @@ public class PlayerController : MonoBehaviour
     private readonly int hashRunning = Animator.StringToHash("running");
 
     public float speed;
+    public float attackCooldown = 0.5f;
 
     public Animator puppetAnimator;
+
+    public CollisionTracker attackCollider;
 
     public PlayerTransitionVfx vfxToNormal;
     public PlayerTransitionVfx vfxToIce;
     public PlayerTransitionVfx vfxToGhost;
     public PlayerTransitionVfx vfxToMetal;
+    public ParticleSystem attackParticleSystem;
 
     private Rigidbody rb;
     private PlayerState playerState;
     private GhostLife ghostLife;
     private GameController gameController;
+    private float lastAttackTime = -1000;
 
     void Awake()
     {
@@ -29,6 +34,28 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        bool attack = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftControl);
+        if (attack && Time.time > lastAttackTime + attackCooldown && playerState == PlayerState.EXORCISM)
+        {
+            lastAttackTime = Time.time;
+
+            // vfx
+            attackParticleSystem.Play();
+
+            // effect
+            foreach (GameObject obj in attackCollider.colliders)
+            {
+                Enemy enemy = obj.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.Die();
+                }
+            }
+        }
     }
 
     void FixedUpdate()
@@ -48,7 +75,7 @@ public class PlayerController : MonoBehaviour
         // Check if fly
         if (!Physics.Raycast(transform.position + Vector3.up * 0.05f, Vector3.down, 0.1f))
         {
-            if(velocity.y < 0f)
+            if (velocity.y < 0f)
                 rb.velocity += new Vector3(0f, velocity.y, 0f);
         }
 

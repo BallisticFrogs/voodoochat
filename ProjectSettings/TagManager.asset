@@ -23,8 +23,8 @@ TagManager:
   - player-ghost
   - player-exorcism
   - spawners
-  - 
-  - 
+  - attack-colliders
+  - enemies
   - 
   - 
   - 

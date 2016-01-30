@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SampleAgentScript : Slowable
+public class Enemy : Slowable
 {
 
     private Transform target;
@@ -34,6 +34,12 @@ public class SampleAgentScript : Slowable
         {
             agent.SetDestination(target.position);
         }
+    }
+
+    public void Die()
+    {
+        // TODO play animation + vfx
+        gameObject.DestroyRecursive();
     }
 
     private void UpdateAgentSpeed(float newSpeed)

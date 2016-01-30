@@ -10,5 +10,7 @@ public static class Layers
     public const int player_ghost = 11;
     public const int player_exorcism = 12;
     public const int spawners = 13;
+    public const int attack_colliders = 14;
+    public const int enemies = 15;
 
 }
