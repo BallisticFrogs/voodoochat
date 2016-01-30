@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        rb.velocity = movement*speed*Time.deltaTime;
-      
+        rb.velocity = movement * speed * Time.deltaTime;
+
+        if (movement != Vector3.zero) { 
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
     }
 }
