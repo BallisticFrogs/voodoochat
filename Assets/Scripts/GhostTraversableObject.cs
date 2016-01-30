@@ -9,12 +9,17 @@ public class GhostTraversableObject : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
+    private GameController gameController;
+
     void Awake()
     {
         gameObject.layer = Layers.obstacles_noghost;
         meshRenderer = GetComponent<MeshRenderer>();
         solidMaterial = meshRenderer.material;
         traversableMaterial = (Material)Resources.Load("traversable");
+
+        gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
+        gameController.RegisterTraversable(this);
     }
 
     public void ShowTraversable(bool traversable)
@@ -28,4 +33,10 @@ public class GhostTraversableObject : MonoBehaviour
             meshRenderer.material = solidMaterial;
         }
     }
+
+    void OnDestroy()
+    {
+        gameController.RemoveTraversable(this);
+    }
+
 }

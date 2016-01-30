@@ -61,6 +61,10 @@ public class PlayerController : MonoBehaviour
             gameController.ShowAllTraversableObjects(false);
             ghostLife.enabled = false;
         }
+        if (oldState == PlayerState.TRANCE)
+        {
+            gameController.SetWorldSpeed(1);
+        }
 
         // add effects of new state
         if (newState == PlayerState.NORMAL)
@@ -70,6 +74,7 @@ public class PlayerController : MonoBehaviour
         if (newState == PlayerState.TRANCE)
         {
             vfxToIce.PlayVfx();
+            gameController.SetWorldSpeed(0.5f);
         }
         if (newState == PlayerState.GHOST)
         {

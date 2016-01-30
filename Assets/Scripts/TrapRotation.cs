@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TrapRotation : MonoBehaviour {
+public class TrapRotation : Slowable
+{
 
-    public float speedRotation;
-
-    // Use this for initialization
-    void Start () {
+    void FixedUpdate()
+    {
+        transform.Rotate(Vector3.up * speed * worldSpeedFactor * Time.deltaTime);
     }
 
-    // Update is called once per frame
-    void Update () {
-        transform.Rotate(Vector3.up * speedRotation * Time.deltaTime);
-    }
 }

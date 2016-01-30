@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee0cd49aa2ee964191a3dd3762496a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slowModeSpeed: 0.3
 --- !u!4 &150904037
 Transform:
   m_ObjectHideFlags: 0
@@ -790,6 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54eb258144b5e4bbed677866c848ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
   target: {fileID: 1264522620}
 --- !u!1001 &375796080
 Prefab:
@@ -2447,7 +2449,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2020574044}
   m_Layer: 0
-  m_Name: enemi
+  m_Name: enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

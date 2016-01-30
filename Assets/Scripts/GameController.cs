@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
 
+    public float slowModeSpeed = 0.5f;
+
     public delegate void UILoaderHandler();
     public event UILoaderHandler OnUiLoaded;
 
-    private GhostTraversableObject[] traversableObjects;
+    private readonly List<GhostTraversableObject> traversableObjects = new List<GhostTraversableObject>();
+    private readonly List<Slowable> slowableObjects = new List<Slowable>();
 
     void Awake()
     {
         StartCoroutine(LoadUIAsync());
-
-        // find all traversable objects
-        traversableObjects = GameObject.FindObjectsOfType<GhostTraversableObject>();
     }
 
     private IEnumerator LoadUIAsync()
@@ -35,9 +37,37 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SetWorldSpeed(float speed)
+    {
+        foreach (Slowable slowableObject in slowableObjects)
+        {
+            slowableObject.SetWorldSpeed(speed);
+        }
+    }
+
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RegisterSlowable(Slowable slowable)
+    {
+        slowableObjects.Add(slowable);
+    }
+
+    public void RemoveSlowable(Slowable slowable)
+    {
+        slowableObjects.Remove(slowable);
+    }
+
+    public void RegisterTraversable(GhostTraversableObject traversable)
+    {
+        traversableObjects.Add(traversable);
+    }
+
+    public void RemoveTraversable(GhostTraversableObject traversable)
+    {
+        traversableObjects.Remove(traversable);
     }
 
 }
