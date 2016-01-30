@@ -81,6 +81,10 @@ public class PlayerController : MonoBehaviour
         {
             gameController.SetWorldSpeed(1);
         }
+        if (oldState == PlayerState.EXORCISM)
+        {
+            gameObject.layer = Layers.player_normal;
+        }
 
         // add effects of new state
         if (newState == PlayerState.NORMAL)
@@ -102,6 +106,7 @@ public class PlayerController : MonoBehaviour
         if (newState == PlayerState.EXORCISM)
         {
             vfxToMetal.PlayVfx();
+            gameObject.layer = Layers.player_exorcism;
         }
     }
 

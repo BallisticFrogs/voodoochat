@@ -4,7 +4,7 @@ using System.Collections;
 public class SampleAgentScript : Slowable
 {
 
-    public Transform target;
+    private Transform target;
 
     private NavMeshAgent agent;
     private Rigidbody rb;
@@ -12,7 +12,6 @@ public class SampleAgentScript : Slowable
     protected override void Awake()
     {
         base.Awake();
-
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -22,12 +21,19 @@ public class SampleAgentScript : Slowable
         }
 
         OnWorldSpeedChanged += UpdateAgentSpeed;
+
+        // find player
+        GameObject player = GameObject.FindGameObjectWithTag(Tags.Player);
+        target = player.transform;
     }
 
     void Update()
     {
         rb.velocity = Vector3.zero;
-        agent.SetDestination(target.position);
+        if (target != null)
+        {
+            agent.SetDestination(target.position);
+        }
     }
 
     private void UpdateAgentSpeed(float newSpeed)
