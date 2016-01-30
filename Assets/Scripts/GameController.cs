@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        GlobalUI.actualGameScene = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine(LoadUIAsync());
     }
 
@@ -45,9 +46,14 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ResetLevel()
+    public void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync("GameOver");
+    }
+
+    public void Victory()
+    {
+        SceneManager.LoadSceneAsync("GameSuccess");
     }
 
     public void RegisterSlowable(Slowable slowable)

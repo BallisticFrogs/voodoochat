@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class GlobalUI : MonoBehaviour
 {
 
+    public static int actualGameScene = 1;
+
     public void OpenUrl(string url)
     {
         Application.OpenURL(url);
@@ -12,7 +14,17 @@ public class GlobalUI : MonoBehaviour
 
     public static void LoadLvl()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(actualGameScene, LoadSceneMode.Single);
+    }
+
+    public void LoadGame()
+    {
+        LoadLvl();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
 }

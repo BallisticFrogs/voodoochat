@@ -13,28 +13,29 @@ public class PlayerHealth : MonoBehaviour
     private GameObject healthWidget;
 
     // Use this for initialization
-    void Awake() {
+    void Awake()
+    {
         gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
         gameController.OnUiLoaded += OnUiLoaded;
 
     }
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	    if (invicibility)
-	    {
-	        timeElapsedSinceLastHit += Time.deltaTime;
-	        if (timeElapsedSinceLastHit >= 2.0f)
-	        {
-	            invicibility = false;
-	        }
-	    }
-	    else
-	    {
-	        
-	    }
-	    if (health <= 0)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (invicibility)
+        {
+            timeElapsedSinceLastHit += Time.deltaTime;
+            if (timeElapsedSinceLastHit >= 2.0f)
+            {
+                invicibility = false;
+            }
+        }
+        else
+        {
+
+        }
+        if (health <= 0)
         {
             health = 0;
             Die();
@@ -60,8 +61,7 @@ public class PlayerHealth : MonoBehaviour
         // TODO do dying thinks
 
         // reset lvl
-        var gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
-        gameController.ResetLevel();
+        gameController.GameOver();
     }
 
 }
