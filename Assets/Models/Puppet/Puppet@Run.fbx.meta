@@ -93,7 +93,22 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.019354837
+        functionName: PlayWalkingSound
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.30752692
+        functionName: PlayWalkingSound
+        data: 
+        objectReferenceParameter: {fileID: 8300000, guid: c92d0b2d98a15f345a73279b56ab7622,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
