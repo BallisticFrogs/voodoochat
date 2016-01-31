@@ -2603,7 +2603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: No Status
+  m_Text: '-----'
 --- !u!222 &1492967715
 CanvasRenderer:
   m_ObjectHideFlags: 0
