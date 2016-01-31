@@ -23,10 +23,7 @@ public class FadeAway : MonoBehaviour
             Color color = textToFadeOut.color;
             color.a -= 1/(fadeDuration*60);
             textToFadeOut.color = color;
-            if (textToFadeOut.color.a <= 0)
-            {
-                Destroy(textToFadeOut);
-            }
+            if (textToFadeOut.color.a <= 0) ;
 
         } else if (Time.time > waitUntilFade)
         {
