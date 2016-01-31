@@ -37,7 +37,7 @@ public class PressurePlate : Slowable
             active = false;
         }
 
-        activatedObject.SetActive(active);
+        if (activatedObject != null) activatedObject.SetActive(active);
     }
 
     void OnTriggerStay(Collider other)
