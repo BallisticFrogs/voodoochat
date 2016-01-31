@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public float timeElapsedSinceLastHit;
 
     private GameController gameController;
-    private GameObject healthWidget;
+    private HealthUI healthWidget;
 
     // Use this for initialization
     void Awake()
@@ -42,17 +42,18 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void dealDamage(int damage)
+    public void ReceiveDamage(int damage)
     {
         health -= damage;
         invicibility = true;
-        healthWidget.GetComponent<HealthUI>().updateHeartUI(health);
+        healthWidget.updateHeartUI(health);
         timeElapsedSinceLastHit = 0.0f;
+        CameraShaker.shaker.shake = 0.3f;
     }
 
     private void OnUiLoaded()
     {
-        healthWidget = GameObject.FindGameObjectWithTag(Tags.HealthWidget);
+        healthWidget = GameObject.FindGameObjectWithTag(Tags.HealthWidget).GetComponent<HealthUI>();
         healthWidget.gameObject.SetActive(enabled);
     }
 

@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TrapTrigger : MonoBehaviour {
+public class TrapTrigger : MonoBehaviour
+{
 
     void OnCollisionEnter(Collision collision)
     {
         Collider collider = collision.collider;
 
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag(Tags.Player))
         {
             GameObject player = collider.gameObject;
-            PlayerHealth  playerHealth = player.GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             if (!playerHealth.invicibility)
             {
-                playerHealth.dealDamage(1);
+                playerHealth.ReceiveDamage(1);
             }
-
         }
     }
+
 }
