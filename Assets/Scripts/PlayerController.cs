@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     private readonly int hashRunning = Animator.StringToHash("running");
 
+    private int attackRaycastMask = 1 << Layers.default_layer | 1 << Layers.obstacles | 1 << Layers.obstacles_noghost;
+
     public float speed;
     public float attackCooldown = 0.5f;
 
@@ -69,7 +71,11 @@ public class PlayerController : MonoBehaviour
                 Enemy enemy = obj.GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.Die();
+                    // raycast to prevent killing enemies through doors/walls/trees
+                    if (!Physics.Linecast(transform.position + Vector3.up * 0.5f, enemy.transform.position + Vector3.up * 0.5f, attackRaycastMask))
+                    {
+                        enemy.Die();
+                    }
                 }
             }
         }
@@ -95,7 +101,6 @@ public class PlayerController : MonoBehaviour
             if (velocity.y < 0f)
                 rb.velocity += new Vector3(0f, velocity.y, 0f);
         }
-
 
         bool running = false;
         if (movement != Vector3.zero)
@@ -187,7 +192,7 @@ public class PlayerController : MonoBehaviour
         fadeAwayComponent.timerUntilfade = 0;
         Color color = instructionsLabel.color;
         color.a = 1;
-        instructionsLabel.color = color; 
+        instructionsLabel.color = color;
         instructionsLabel.text = instructions;
     }
 
