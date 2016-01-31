@@ -1,7 +1,11 @@
 Voodoo Chat
 ===========
-Voodoo chat is game created during the Global Game Jam 2016 by Nicolas Pierre-Loti-Viaud, Guillaume Tinon and Vincent Beauzee. It is totally free and 
+Voodoo chat is a game created during the Global Game Jam 2016 by Nicolas Pierre-Loti-Viaud, Guillaume Tinon and Vincent Beauzee. It is totally free and 
 This game have to be played on Twitch. The player is in control of a voodoo puppet. The Twitch Chat can vote to change the status of the player : Ghost, Trance or Exorcism.
+
+Goals
+-----
+Pick-up three ingredients of the ritual which will free the player. One ingredients in each temple.
 
 Controls
 --------
