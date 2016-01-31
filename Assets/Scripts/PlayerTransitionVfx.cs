@@ -8,9 +8,11 @@ public class PlayerTransitionVfx : MonoBehaviour
 
     public Animator animator;
 
+    public ParticleSystem[] particleSystems;
+
     void Awake()
     {
-        animator.gameObject.SetActive(false);
+        //animator.gameObject.SetActive(false);
     }
 
     //    void Update()
@@ -23,13 +25,24 @@ public class PlayerTransitionVfx : MonoBehaviour
 
     public void PlayVfx()
     {
-        animator.gameObject.SetActive(true);
+        Debug.LogWarning("PlayVfx");
+        //animator.gameObject.SetActive(true);
         animator.SetTrigger(hashPlay);
+
+        foreach (ParticleSystem system in particleSystems)
+        {
+            system.Play();
+        }
     }
 
     public void StopVfx()
     {
-        animator.gameObject.SetActive(false);
+        Debug.LogWarning("StopVfx");
+        //animator.gameObject.SetActive(false);
+        foreach (ParticleSystem system in particleSystems)
+        {
+            system.Stop();
+        }
     }
 
 }
