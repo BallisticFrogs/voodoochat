@@ -9,6 +9,10 @@ public class PressurePlate : Slowable
     public float releaseTime = 2f;
     public ActivableObject activatedObject;
 
+    public AudioClip pressurePlateDown;
+    public AudioClip pressurePlateUp;
+    private AudioSource audioSource;
+
     private float pressedRatio;
     private float baseMeshY;
     private float meshHeight;
@@ -19,12 +23,18 @@ public class PressurePlate : Slowable
         base.Awake();
         baseMeshY = mesh.transform.localPosition.y;
         meshHeight = mesh.transform.localScale.y;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (pressedRatio > 0)
         {
+            if (active == true && pressedRatio <= 0.9f && !audioSource.isPlaying)
+            {
+                audioSource.clip = pressurePlateUp;
+                audioSource.Play();
+            }
             pressedRatio -= Time.deltaTime * worldSpeedFactor / releaseTime;
             pressedRatio = Mathf.Max(0, pressedRatio);
 
@@ -44,6 +54,11 @@ public class PressurePlate : Slowable
     {
         if (other.CompareTag(Tags.Player))
         {
+            if (pressedRatio == 0)
+            {
+                audioSource.clip = pressurePlateDown;
+                audioSource.Play();
+            }
             pressedRatio += Time.deltaTime * worldSpeedFactor / pressTime;
             pressedRatio = Mathf.Min(1, pressedRatio);
 
