@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour
 
     public float spawnDelay = 15f;
 
+    public Transform spawnPoint;
+
     private GameObject enemyPrefab;
 
     private float lastSpawnTime = -10000f;
@@ -18,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (Time.time >= lastSpawnTime + spawnDelay)
+        if (Time.time >= lastSpawnTime + spawnDelay && other.CompareTag(Tags.Player))
         {
             lastSpawnTime = Time.time;
             Spawn();
@@ -27,8 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject enemyObj = Instantiate(enemyPrefab);
-        enemyObj.transform.position = gameObject.transform.position;
+        GameObject enemyObj = (GameObject)Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
     }
 
 }

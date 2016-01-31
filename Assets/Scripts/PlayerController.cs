@@ -163,4 +163,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public PlayerState GetPlayerState()
+    {
+        return playerState;
+    }
+
 }
