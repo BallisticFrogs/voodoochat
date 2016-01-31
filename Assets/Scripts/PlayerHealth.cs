@@ -60,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // TODO do dying thinks
 
-        // reset lvl
+        // game over
         gameController.GameOver();
     }
 

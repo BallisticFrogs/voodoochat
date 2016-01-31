@@ -71,7 +71,8 @@ public class GhostLife : MonoBehaviour
         timeToRegen = regenDelay;
         if (ghostLife < 0)
         {
-            // TODO game over
+            // game over
+            gameController.GameOver();
         }
     }
 
