@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        bool attack = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftControl);
+        //bool attack = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.LeftControl);
+        bool attack = Input.GetButtonDown("Fire1");
         if (attack && Time.time > lastAttackTime + attackCooldown && playerState == PlayerState.EXORCISM)
         {
             lastAttackTime = Time.time;
