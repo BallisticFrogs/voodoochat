@@ -4918,6 +4918,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.8660254
       objectReference: {fileID: 0}
+    - target: {fileID: 2094970, guid: f24cee99e31caa44bb0baa5ed3364591, type: 2}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094970, guid: f24cee99e31caa44bb0baa5ed3364591, type: 2}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f24cee99e31caa44bb0baa5ed3364591, type: 2}
   m_IsPrefabParent: 0
