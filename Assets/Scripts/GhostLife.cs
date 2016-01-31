@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GhostLife : MonoBehaviour
 {
 
-    private Text ghostLifeWidget;
+    private Slider ghostLifeWidget;
 
     public float maxLife = 100;
     public float regenDelay = 1f;
@@ -46,7 +46,7 @@ public class GhostLife : MonoBehaviour
 
     private void OnUiLoaded()
     {
-        ghostLifeWidget = GameObject.FindGameObjectWithTag(Tags.GhostLifeWidget).GetComponent<Text>();
+        ghostLifeWidget = GameObject.FindGameObjectWithTag(Tags.GhostLifeWidget).GetComponent<Slider>();
         ghostLifeWidget.gameObject.SetActive(enabled);
     }
 
@@ -80,7 +80,7 @@ public class GhostLife : MonoBehaviour
     {
         if (ghostLifeWidget != null)
         {
-            ghostLifeWidget.text = "Ghost life: " + ((int)ghostLife);
+            ghostLifeWidget.value = ghostLife/100;
         }
     }
 

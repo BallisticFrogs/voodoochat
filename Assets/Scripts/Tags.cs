@@ -10,4 +10,5 @@ public static class Tags
     public const string TwitchChatBot = "TwitchChatBot";
     public const string GhostLifeWidget = "GhostLifeWidget";
     public const string HealthWidget = "HealthWidget";
- }
+    public const string PlayerStatus = "PlayerStatus";
+}

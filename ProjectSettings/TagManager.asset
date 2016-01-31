@@ -8,6 +8,7 @@ TagManager:
   - PlayerStateController
   - GhostLifeWidget
   - HealthWidget
+  - PlayerStatus
   layers:
   - Default
   - TransparentFX

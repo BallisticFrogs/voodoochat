@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private PlayerState playerState;
     private GhostLife ghostLife;
+    private Text playerStatus;
     private GameController gameController;
     private float lastAttackTime = -1000;
 
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
         ghostLife = GetComponent<GhostLife>();
+        gameController.OnUiLoaded += OnUiLoaded;
     }
 
     void Start()
@@ -90,6 +93,11 @@ public class PlayerController : MonoBehaviour
         puppetAnimator.SetBool(hashRunning, running);
     }
 
+    private void OnUiLoaded()
+    {
+        playerStatus = GameObject.FindGameObjectWithTag(Tags.PlayerStatus).GetComponent<Text>();
+    }
+
     public void SetPlayerState(PlayerState newState)
     {
         if (newState == playerState) return;
@@ -117,11 +125,13 @@ public class PlayerController : MonoBehaviour
         if (newState == PlayerState.NORMAL)
         {
             vfxToNormal.PlayVfx();
+            playerStatus.text = "-----";
         }
         if (newState == PlayerState.TRANCE)
         {
             vfxToIce.PlayVfx();
             gameController.SetWorldSpeed(0.5f);
+            playerStatus.text = "TRANCE";
         }
         if (newState == PlayerState.GHOST)
         {
@@ -129,11 +139,13 @@ public class PlayerController : MonoBehaviour
             gameController.ShowAllTraversableObjects(true);
             ghostLife.enabled = true;
             vfxToGhost.PlayVfx();
+            playerStatus.text = "GHOST";
         }
         if (newState == PlayerState.EXORCISM)
         {
             vfxToMetal.PlayVfx();
             gameObject.layer = Layers.player_exorcism;
+            playerStatus.text = "EXORCISM";
         }
     }
 
