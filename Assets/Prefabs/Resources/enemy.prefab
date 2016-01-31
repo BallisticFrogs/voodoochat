@@ -14,6 +14,7 @@ GameObject:
   - 54: {fileID: 5471218}
   - 195: {fileID: 19576620}
   - 114: {fileID: 11457352}
+  - 114: {fileID: 11422944}
   m_Layer: 15
   m_Name: enemy
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1, z: 10}
+  m_LocalPosition: {x: 10, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,6 +82,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &11422944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11657af3189d2c44cba21111e46e4507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11457352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54eb258144b5e4bbed677866c848ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 0
 --- !u!135 &13564676
 SphereCollider:
   m_ObjectHideFlags: 1
