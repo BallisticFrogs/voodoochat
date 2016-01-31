@@ -7,10 +7,12 @@ public class PressurePlate : Slowable
     public GameObject mesh;
     public float pressTime = 0.5f;
     public float releaseTime = 2f;
+    public ActivableObject activatedObject;
 
     private float pressedRatio;
     private float baseMeshY;
     private float meshHeight;
+    private bool active;
 
     protected override void Awake()
     {
@@ -30,6 +32,12 @@ public class PressurePlate : Slowable
             localPosition.y = baseMeshY - pressedRatio * meshHeight;
             mesh.transform.localPosition = localPosition;
         }
+        if (active && pressedRatio == 0)
+        {
+            active = false;
+        }
+
+        activatedObject.SetActive(active);
     }
 
     void OnTriggerStay(Collider other)
@@ -38,6 +46,11 @@ public class PressurePlate : Slowable
         {
             pressedRatio += Time.deltaTime * worldSpeedFactor / pressTime;
             pressedRatio = Mathf.Min(1, pressedRatio);
+
+            if (pressedRatio == 1)
+            {
+                active = true;
+            }
         }
     }
 
