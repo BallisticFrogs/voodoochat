@@ -11,4 +11,5 @@ public static class Tags
     public const string GhostLifeWidget = "GhostLifeWidget";
     public const string HealthWidget = "HealthWidget";
     public const string PlayerStatus = "PlayerStatus";
+    public const string InstructionsLabel = "InstructionsLabel";
 }

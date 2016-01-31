@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public PlayerTransitionVfx vfxToMetal;
     public ParticleSystem attackParticleSystem;
 
+
+
     public AudioClip audioGhost;
     public AudioClip audioTrance;
     public AudioClip audioExorcism;
@@ -28,10 +30,16 @@ public class PlayerController : MonoBehaviour
     private PlayerState playerState;
     private GhostLife ghostLife;
     private Text playerStatus;
+    private Text InstructionsLabel;
+    private FadeAway fadeAwayComponent;
     private GameController gameController;
     private float lastAttackTime = -1000;
 
     private AudioSource audioSource;
+
+    private string tranceInstructions = "Bullet time!!! \nControls are reversed!";
+    private string exorcismInstructions = "Press SPACE to attack!";
+    private string ghostInstructions = "Lights are the only danger! \nWatch your grey health bar! \n(top-left of your screen)";
 
     void Awake()
     {
@@ -104,6 +112,8 @@ public class PlayerController : MonoBehaviour
     private void OnUiLoaded()
     {
         playerStatus = GameObject.FindGameObjectWithTag(Tags.PlayerStatus).GetComponent<Text>();
+        InstructionsLabel = GameObject.FindGameObjectWithTag(Tags.InstructionsLabel).GetComponent<Text>();
+        fadeAwayComponent = InstructionsLabel.GetComponent<FadeAway>();
     }
 
     public void SetPlayerState(PlayerState newState)
@@ -140,6 +150,7 @@ public class PlayerController : MonoBehaviour
             vfxToIce.PlayVfx();
             gameController.SetWorldSpeed(0.5f);
             playerStatus.text = "TRANCE";
+            displaySpecialInstructions(tranceInstructions);
             audioSource.clip = audioTrance;
             audioSource.Play();
         }
@@ -150,6 +161,8 @@ public class PlayerController : MonoBehaviour
             ghostLife.enabled = true;
             vfxToGhost.PlayVfx();
             playerStatus.text = "GHOST";
+
+            displaySpecialInstructions(ghostInstructions);
             audioSource.clip = audioGhost;
             audioSource.Play();
         }
@@ -158,6 +171,7 @@ public class PlayerController : MonoBehaviour
             vfxToMetal.PlayVfx();
             gameObject.layer = Layers.player_exorcism;
             playerStatus.text = "EXORCISM";
+            displaySpecialInstructions(exorcismInstructions);
             audioSource.clip = audioExorcism;
             audioSource.Play();
         }
@@ -166,6 +180,17 @@ public class PlayerController : MonoBehaviour
     public PlayerState GetPlayerState()
     {
         return playerState;
+    }
+
+    private void displaySpecialInstructions(string instructions)
+    {
+        fadeAwayComponent.fadeStarted = false;
+        //reset timer before fade out
+        fadeAwayComponent.timerUntilfade = 0;
+        Color color = InstructionsLabel.color;
+        color.a = 1;
+        InstructionsLabel.color = color; 
+        InstructionsLabel.text = instructions;
     }
 
 }

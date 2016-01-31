@@ -7,7 +7,9 @@ public class FadeAway : MonoBehaviour
     public float waitUntilFade;
     public float fadeDuration;
 
-    private bool fadeStarted = false;
+    public bool fadeStarted = false;
+    public float timerUntilfade;
+
     private Text textToFadeOut;
 
     void Start()
@@ -25,9 +27,12 @@ public class FadeAway : MonoBehaviour
             textToFadeOut.color = color;
             if (textToFadeOut.color.a <= 0) ;
 
-        } else if (Time.time > waitUntilFade)
+        } else if (timerUntilfade >= waitUntilFade)
         {
             fadeStarted = true;
+        } else
+        {
+            timerUntilfade += Time.deltaTime;
         }
         
     }
