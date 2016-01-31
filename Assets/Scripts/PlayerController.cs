@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
     public AudioClip audioTrance;
     public AudioClip audioExorcism;
 
+    public SkinnedMeshRenderer skinnedMeshRenderer;
+    public Material matNormal;
+    public Material matTrance;
+    public Material matGhost;
+    public Material matExorcism;
+
     private Rigidbody rb;
     private PlayerState playerState;
     private GhostLife ghostLife;
@@ -147,12 +153,14 @@ public class PlayerController : MonoBehaviour
         {
             vfxToNormal.PlayVfx();
             playerStatus.text = "-----";
+            skinnedMeshRenderer.material = matNormal;
         }
         if (newState == PlayerState.TRANCE)
         {
             vfxToIce.PlayVfx();
             gameController.SetWorldSpeed(0.5f);
             playerStatus.text = "TRANCE";
+            skinnedMeshRenderer.material = matTrance;
             displaySpecialInstructions(tranceInstructions);
             audioSource.clip = audioTrance;
             audioSource.Play();
@@ -164,6 +172,7 @@ public class PlayerController : MonoBehaviour
             ghostLife.enabled = true;
             vfxToGhost.PlayVfx();
             playerStatus.text = "GHOST";
+            skinnedMeshRenderer.material = matGhost;
 
             displaySpecialInstructions(ghostInstructions);
             audioSource.clip = audioGhost;
@@ -174,6 +183,7 @@ public class PlayerController : MonoBehaviour
             vfxToMetal.PlayVfx();
             gameObject.layer = Layers.player_exorcism;
             playerStatus.text = "EXORCISM";
+            skinnedMeshRenderer.material = matExorcism;
             displaySpecialInstructions(exorcismInstructions);
             audioSource.clip = audioExorcism;
             audioSource.Play();

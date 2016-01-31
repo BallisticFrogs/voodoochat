@@ -1467,6 +1467,11 @@ MonoBehaviour:
   audioGhost: {fileID: 8300000, guid: f1bf286576508194fbc6c1dd23d7ba0e, type: 3}
   audioTrance: {fileID: 8300000, guid: b6455e2f799debd41be6b4d4b8984ab7, type: 3}
   audioExorcism: {fileID: 8300000, guid: 754031ef8c982684dbc40fd9c04661e2, type: 3}
+  skinnedMeshRenderer: {fileID: 13791860}
+  matNormal: {fileID: 2100000, guid: e82abf38e69c48945b9f83b042000712, type: 2}
+  matTrance: {fileID: 2100000, guid: e176cc1f5bd23e546af3ad24ff18c933, type: 2}
+  matGhost: {fileID: 2100000, guid: d5f56825d1b97a54db1e2cf49525af63, type: 2}
+  matExorcism: {fileID: 2100000, guid: f33b6b39cf981ab4a88935a64a26a67e, type: 2}
 --- !u!114 &11411588
 MonoBehaviour:
   m_ObjectHideFlags: 1
