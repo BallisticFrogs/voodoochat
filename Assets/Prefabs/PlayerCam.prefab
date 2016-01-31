@@ -76,6 +76,7 @@ GameObject:
   - 81: {fileID: 8138680}
   - 114: {fileID: 11438826}
   - 114: {fileID: 11456380}
+  - 114: {fileID: 11424330}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1048,7 +1049,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -4}
+  m_LocalPosition: {x: 0, y: 12, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 434310}
@@ -1349,6 +1350,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63d4bb1b6a3aa54cb55fc33835cdd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11424330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a970acddb8696a4792ca6e022840a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseTexture: {fileID: 2800000, guid: 45ca7cd7d934d6245bb4539f780e4892, type: 3}
+  UseHighPrecisionDepthMap: 0
+  Samples: 1
+  Downsampling: 1
+  Radius: 0.25
+  Intensity: 2
+  Distance: 4
+  Bias: 0.1
+  LumContribution: 0.5
+  OcclusionColor: {r: 0, g: 0, b: 0, a: 1}
+  CutoffDistance: 150
+  CutoffFalloff: 50
+  Blur: 1
+  BlurDownsampling: 0
+  BlurPasses: 3
+  BlurBilateralThreshold: 0.1
+  DebugAO: 0
 --- !u!114 &11424648
 MonoBehaviour:
   m_ObjectHideFlags: 1
