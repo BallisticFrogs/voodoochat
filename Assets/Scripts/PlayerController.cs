@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     public PlayerTransitionVfx vfxToMetal;
     public ParticleSystem attackParticleSystem;
 
+    public AudioClip audioGhost;
+    public AudioClip audioTrance;
+    public AudioClip audioExorcism;
+
     private Rigidbody rb;
     private PlayerState playerState;
     private GhostLife ghostLife;
@@ -27,9 +31,12 @@ public class PlayerController : MonoBehaviour
     private GameController gameController;
     private float lastAttackTime = -1000;
 
+    private AudioSource audioSource;
+
     void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
+        audioSource = GetComponent<AudioSource>();
         ghostLife = GetComponent<GhostLife>();
         gameController.OnUiLoaded += OnUiLoaded;
     }
@@ -132,6 +139,8 @@ public class PlayerController : MonoBehaviour
             vfxToIce.PlayVfx();
             gameController.SetWorldSpeed(0.5f);
             playerStatus.text = "TRANCE";
+            audioSource.clip = audioTrance;
+            audioSource.Play();
         }
         if (newState == PlayerState.GHOST)
         {
@@ -140,12 +149,16 @@ public class PlayerController : MonoBehaviour
             ghostLife.enabled = true;
             vfxToGhost.PlayVfx();
             playerStatus.text = "GHOST";
+            audioSource.clip = audioGhost;
+            audioSource.Play();
         }
         if (newState == PlayerState.EXORCISM)
         {
             vfxToMetal.PlayVfx();
             gameObject.layer = Layers.player_exorcism;
             playerStatus.text = "EXORCISM";
+            audioSource.clip = audioExorcism;
+            audioSource.Play();
         }
     }
 
