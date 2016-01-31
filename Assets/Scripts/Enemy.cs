@@ -4,10 +4,15 @@ using System.Collections;
 public class Enemy : Slowable
 {
 
+    private readonly int hashDie = Animator.StringToHash("die");
+    private readonly int hashWalking = Animator.StringToHash("walking");
+
     private readonly WaitForSeconds repathWait = new WaitForSeconds(0.2f);
 
     public float timeToAwake = 1f;
     public float maxPursuitDistance = 15;
+
+    public Animator animator;
 
     private NavMeshAgent agent;
     private Rigidbody rb;
@@ -38,6 +43,12 @@ public class Enemy : Slowable
 
         // start
         StartCoroutine(Repath());
+    }
+
+    void Update()
+    {
+        rb.velocity = Vector3.zero;
+        if (animator != null) animator.SetBool(hashWalking, agent.hasPath);
     }
 
     void FixedUpdate()
@@ -93,8 +104,15 @@ public class Enemy : Slowable
 
     public void Die()
     {
-        // TODO play animation + vfx
-        gameObject.DestroyRecursive();
+        // disable capacity to attack
+        GetComponent<DamageDealer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        // play animation
+        if (animator != null) animator.SetTrigger(hashDie);
+
+        // remove after a delay
+        gameObject.DestroyRecursive(1.2f);
     }
 
     private void UpdateAgentSpeed(float newSpeed)

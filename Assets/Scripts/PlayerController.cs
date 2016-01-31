@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour
     public PlayerTransitionVfx vfxToMetal;
     public ParticleSystem attackParticleSystem;
 
-
-
     public AudioClip audioGhost;
     public AudioClip audioTrance;
     public AudioClip audioExorcism;
@@ -30,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private PlayerState playerState;
     private GhostLife ghostLife;
     private Text playerStatus;
-    private Text InstructionsLabel;
+    private Text instructionsLabel;
     private FadeAway fadeAwayComponent;
     private GameController gameController;
     private float lastAttackTime = -1000;
@@ -112,8 +110,8 @@ public class PlayerController : MonoBehaviour
     private void OnUiLoaded()
     {
         playerStatus = GameObject.FindGameObjectWithTag(Tags.PlayerStatus).GetComponent<Text>();
-        InstructionsLabel = GameObject.FindGameObjectWithTag(Tags.InstructionsLabel).GetComponent<Text>();
-        fadeAwayComponent = InstructionsLabel.GetComponent<FadeAway>();
+        instructionsLabel = GameObject.FindGameObjectWithTag(Tags.InstructionsLabel).GetComponent<Text>();
+        fadeAwayComponent = instructionsLabel.GetComponent<FadeAway>();
     }
 
     public void SetPlayerState(PlayerState newState)
@@ -187,10 +185,10 @@ public class PlayerController : MonoBehaviour
         fadeAwayComponent.fadeStarted = false;
         //reset timer before fade out
         fadeAwayComponent.timerUntilfade = 0;
-        Color color = InstructionsLabel.color;
+        Color color = instructionsLabel.color;
         color.a = 1;
-        InstructionsLabel.color = color; 
-        InstructionsLabel.text = instructions;
+        instructionsLabel.color = color; 
+        instructionsLabel.text = instructions;
     }
 
 }
