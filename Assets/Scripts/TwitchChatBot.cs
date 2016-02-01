@@ -51,20 +51,27 @@ public class TwitchChatBot : MonoBehaviour
             string username = usernameField.text;
             string password = passwordField.text;
 
-            // connect to Twitch
-            client = new IrcClient("irc.twitch.tv", 6667, username, password);
-            client.JoinRoom(username);
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                // connect to Twitch
+                client = new IrcClient("irc.twitch.tv", 6667, username, password);
+                client.JoinRoom(username.ToLower());
 
-            // save prefs
-            PlayerPrefs.SetString(pref_username, username);
-            PlayerPrefs.SetString(pref_password, password);
+                // save prefs
+                PlayerPrefs.SetString(pref_username, username);
+                PlayerPrefs.SetString(pref_password, password);
 
-            // start reading chat
-            ircClientThread = new Thread(ReadChat);
-            ircClientThread.Start();
+                // start reading chat
+                ircClientThread = new Thread(ReadChat);
+                ircClientThread.Start();
 
-            // load main scene
-            GlobalUI.LoadLvl();
+                // load main scene
+                GlobalUI.LoadLvl();
+            }
+            else
+            {
+                feedbackText.text = "Missing username and/or password !";
+            }
         }
         catch (Exception e)
         {
