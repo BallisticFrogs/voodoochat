@@ -83,16 +83,23 @@ public class TwitchChatBot : MonoBehaviour
     {
         while (true)
         {
+            // wait for next message
             string message = client.ReadChatMessage(); // blocking
+            //Debug.LogWarning("New Twitch message: '" + message + "'");
 
-            string[] parts = message.Split(':', '!');
-            //            Debug.LogWarning(message);
-            //            for (int i = 0; i < parts.Length; i++)
-            //            {
-            //                Debug.LogWarning(i + " => " + parts[i]);
-            //            }
+            if (message.Contains("PING :tmi.twitch.tv"))
+            {
+                // Twitch message checking we are still here
+                // we must answer to keep the connection alive
+                client.SendIrcMessage("PONG :tmi.twitch.tv");
+            }
+            else
+            {
+                // probably a user msg
+                string[] parts = message.Split(':', '!');
+                if (OnMessage != null && parts.Length > 2) OnMessage(parts[1], parts[parts.Length - 1]);
+            }
 
-            if (OnMessage != null && parts.Length > 2) OnMessage(parts[1], parts[parts.Length - 1]);
         }
     }
 

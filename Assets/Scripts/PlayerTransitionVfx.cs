@@ -25,7 +25,7 @@ public class PlayerTransitionVfx : MonoBehaviour
 
     public void PlayVfx()
     {
-        Debug.LogWarning("PlayVfx");
+        //Debug.LogWarning("PlayVfx");
         //animator.gameObject.SetActive(true);
         animator.SetTrigger(hashPlay);
 
@@ -37,7 +37,7 @@ public class PlayerTransitionVfx : MonoBehaviour
 
     public void StopVfx()
     {
-        Debug.LogWarning("StopVfx");
+        //Debug.LogWarning("StopVfx");
         //animator.gameObject.SetActive(false);
         foreach (ParticleSystem system in particleSystems)
         {

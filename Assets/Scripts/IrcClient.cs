@@ -73,7 +73,7 @@ public class IrcClient
         return input.ReadLine();
     }
 
-    private void SendIrcMessage(string msg)
+    public void SendIrcMessage(string msg)
     {
         output.WriteLine(msg);
         output.Flush();
