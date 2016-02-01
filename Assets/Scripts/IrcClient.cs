@@ -28,6 +28,11 @@ public class IrcClient
         input = new StreamReader(tcpClient.GetStream());
         output = new StreamWriter(tcpClient.GetStream()) { NewLine = "\r\n" };
 
+        if (!password.StartsWith("oauth:"))
+        {
+            password = "oauth:" + password;
+        }
+
         output.WriteLine("PASS " + password);
         output.WriteLine("NICK " + username);
         output.WriteLine("USER " + username + " 8 * :" + username);
